@@ -1,0 +1,187 @@
+
+
+<div class="container-fluid page mx-auto">
+
+
+
+  <div class="row diapo">
+    <div class="col-md-3 menu-photo">
+      <select class="form-control form-control-sm" (change)="onChangeSelectPhoto($event.target.value)">
+        <option>Mars-Curiosity project</option>
+        <!--<option>Mars-Spirit</option>-->
+        <option>Hubble</option>
+        <option>Moon</option>
+
+      </select>
+    </div>
+    <div class="col align-self-center diapo">
+    <!--{{datas | json}}-->
+      <div class="row">
+        <div class="col text-center">
+          <h1 *ngIf="showRover" class="">
+            Mars rover
+          </h1>
+          <h1 *ngIf="showHubble" class="">
+            Hubble
+          </h1>
+          <h1 *ngIf="showMoon" class="">
+            Moon
+          </h1>
+          <hr>
+        </div>
+      </div>
+      <div *ngIf="showRover" class="rover">
+
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let rover of datasRover.collection?.items | paginate: { itemsPerPage: 10, currentPage: p_rover,id: 'third' }">
+            <img class="curiosity_img" src="{{rover.links[0].href}}">
+            <div class="carousel-caption">
+              <h3 class="card-text">{{rover.data[0].title}}</h3>
+              <p>{{rover.data[0].date_created | date}}</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <pagination-controls (pageChange)="p_rover = $event" id="third"></pagination-controls>
+      </div>
+
+      <div *ngIf="showHubble" class="hubble">
+
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let sat of datasHubble.collection.items | paginate: { itemsPerPage: 10, currentPage: p,id: 'first' }">
+            <img class="curiosity_img" src="{{sat.links[0].href}}">
+            <div class="carousel-caption">
+              <h3>{{sat.data[0].title}}</h3>
+              <p>{{sat.data[0].date_created | date}}</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <pagination-controls (pageChange)="p = $event" id="first"></pagination-controls>
+
+
+      </div>
+
+      <div *ngIf="showMoon" class="moon">
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let moon of datasMoon.collection.items | paginate: { itemsPerPage: 10, currentPage: p_moon,id: 'second' }">
+            <img class="curiosity_img" src="{{moon.links[0].href}}">
+            <div class="carousel-caption">
+              <h3>{{moon.data[0].title}}</h3>
+              <p>{{moon.data[0].date_created | date}}</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <pagination-controls (pageChange)="p_moon = $event" id="second"></pagination-controls>
+      </div>
+
+
+    </div>
+    <div class="col-md-2 btn-collection">
+      <div class="row">
+        <div class="col">
+      <button type="button" class="btn btn-outline-light" *ngIf="showRover" (click)="showRoverColl()">show collection</button>
+      <button type="button" class="btn btn-outline-light" *ngIf="showHubble" (click)="showHubbleColl()">show collection</button>
+      <button type="button" class="btn btn-outline-light" *ngIf="showMoon" (click)="showMoonColl()">show collection</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row collect mx-auto">
+
+    <div class="rovCol container-fluid" *ngIf="showRoverCollection">
+
+      <div class="row ">
+        <div class="col-md-3  " style="margin-bottom: 2%" *ngFor="let rover of datasRover.collection.items | paginate: { itemsPerPage: 10, currentPage: p_roverCol,id: 'fourth' }">
+
+
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="{{rover.links[0].href}}" alt="Card image">
+            <div class="card-img-overlay">
+              <div class="caption">
+              <h5 class="card-title">{{rover.data[0].title}}</h5>
+              <p class="card-text">{{rover.data[0].date_created | date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+  </div>
+    <div class="rovCol container-fluid" *ngIf="showHubbleCollection">
+
+      <div class="row">
+        <div class="col-md-3 col-sm-12" style="margin-bottom: 2%" *ngFor="let sat of datasHubble.collection.items | paginate: { itemsPerPage: 10, currentPage: p_satCol,id: 'fifth' }">
+
+
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="{{sat.links[0].href}}" alt="Card image">
+            <div class="card-img-overlay">
+              <div class="caption">
+              <h5 class="card-title">{{sat.data[0].title}}</h5>
+              <p class="card-text">{{sat.data[0].date_created | date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="rovCol container-fluid" *ngIf="showMoonCollection">
+
+      <div class="row">
+        <div class="col-md-3 col-sm-12" style="margin-bottom: 2%" *ngFor="let moon of datasMoon.collection.items | paginate: { itemsPerPage: 10, currentPage: p_moonCol,id: 'sixth' }">
+
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="{{moon.links[0].href}}" alt="Card image">
+            <div class="card-img-overlay">
+              <div class="caption">
+              <h5 class="card-title">{{moon.data[0].title}}</h5>
+              <p class="card-text">{{moon.data[0].date_created | date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+</div>
+  <div class="row" *ngIf="showRoverCollection">
+
+
+    <div class="col-md-6 offset-md-3" ><pagination-controls (pageChange)="p_roverCol = $event" id="fourth"></pagination-controls></div>
+
+
+
+  </div>
+
+  <div class="row" *ngIf="showHubbleCollection">
+
+
+
+    <div class="col-md-6 offset-md-3" ><pagination-controls (pageChange)="p_satCol = $event" id="fifth"></pagination-controls></div>
+
+
+
+
+  </div>
+
+  <div class="row" *ngIf="showMoonCollection">
+
+
+    <div class="col-md-6 offset-md-3" ><pagination-controls (pageChange)="p_moonCol = $event" id="sixth"></pagination-controls></div>
+
+
+
+  </div>
+</div>

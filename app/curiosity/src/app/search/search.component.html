@@ -1,0 +1,122 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+  <div class="form-group">
+    <label for="searchInput">search photo</label>
+    <input type="text" class="form-control form-control-sm" id="searchInput" aria-describedby="searchInput" placeholder="ex: milky way exoplanet APOLLO 11 sun moon orion ..." [formControl]="searchForm.controls['searchInput']">
+    <small id="emailHelp" class="form-text text-muted">finding some space photo</small>
+  </div>
+  <button type="submit" class="btn btn-outline-light btn-sm" (click)="loadingOn()">Search</button>
+</form>
+
+<!--<p>{{searchForm.value | json}}</p>-->
+
+
+
+<!--<pre *ngIf="datasSearch?.collection?.items">
+  {{datasSearch?.collection?.items | json}}
+</pre>-->
+
+
+<div class="container" *ngIf="datasSearch?.collection?.items">
+  <div class="row">
+   <p style="margin-right:2%">recherche :"{{keySearch}}" </p> <p> resultats :{{datasSearch?.collection?.metadata.total_hits}}</p>
+  </div>
+  <div class="my-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  </div>
+  <div class="row">
+
+        <!--<div class="card-columns col-md-10 mx-auto">
+
+          <div class="card" *ngFor="let data of datasSearch?.collection?.items | paginate: { itemsPerPage: 6, currentPage: p,id: 'first' }">
+            <img class="card-img-top desc-img" src="{{data.links[0].href}}" alt="Card image cap">
+            <div class="card-body">
+
+                <h5 class="card-title">{{data.data[0].title}}</h5>
+                <p class="card-text">{{data.data[0].date_created | date}}</p>
+
+              <p [innerHTML]='data.data[0].description '></p>
+
+            </div>
+          </div>
+
+
+        </div>-->
+
+
+    <div id="overlay" *ngIf="showOverlay">
+      <button class="btn close" (click)="closeOverlay()">
+X
+      </button>
+      <div class="container desc">
+        <div class="row ">
+          <div class="col-md-8 align-text-center">
+            <img src="{{detailViewData.links[0].href}}" alt="" class="detail ">
+          </div>
+          <div class="col-md-4 ">
+            <h5>{{detailViewData.data[0].title}}</h5>
+            <p [innerHTML]='detailViewData.data[0].description' *ngIf="!isTranslated"></p>
+            <p [innerHTML]="translated_desc.result?.text" *ngIf="isTranslated"></p>
+            <p class="card-text"><small class="text-muted">{{detailViewData.data[0].date_created | date}}</small></p>
+
+            <div class="form-check form-check-inline">
+              <div *ngFor="let entry of entries; let idx = index">
+                <input class="form-check-input" type="radio" name="radiogroup" id="{{entry.description}}" value="{{entry.description}}" [checked]="idx === 0" [value]="entry.id" (change)="onSelectionChange(entry)">
+                <label class="form-check-label" for="{{entry.description}}">
+                  {{ entry.description }}
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card-deck">
+
+      <div class="card card-search" *ngFor="let d of data?.collection?.items" >
+
+        <div>
+          <div class="img-container" (click)="cardDetail(d)">
+            <img class="card-img-top" src="{{d.links[0].href}}" alt="Card image cap">
+          </div>
+          <div class="card-body body-search">
+            <h5 class="card-title" (click)="cardDetail(d)">{{(d.data[0].title.length>12)? (d.data[0].title | slice:0:12)+'..':(d.data[0].title)}}</h5>
+            <p (click)="cardDetail(d)" > {{ d.data[0].description  | slice:0:40}}..</p>
+           <!-- [innerHTML]='d.data[0].description  '-->
+            <p class="card-text"><small class="text-muted">{{d.data[0].date_created | date}}</small></p>
+          </div>
+           <div class="container align-text-bottom"> <div class="row">
+
+             <p>tag:</p> <div class="" *ngFor="let key of d.data[0].keywords"><small class="text-muted">
+             <button type="button" class="btn btn-primary btn-sm btn-tag" (click)="find(key)"> {{ (key.length>12)? (key | slice:0:12)+'..':(key)}}</button></small></div>
+
+           </div>
+           </div>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="row" *ngIf="datasSearch?.collection?.metadata.total_hits > 100 ">
+
+    <div class="col-md-6 offset-md-3" >
+
+
+      <ngb-pagination [collectionSize]="pageCount" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" size="sm" (pageChange)="pageChange(page)"></ngb-pagination>
+
+    </div>
+
+  </div>
+</div>

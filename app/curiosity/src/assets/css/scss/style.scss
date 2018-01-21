@@ -1,0 +1,191 @@
+@import "colors";
+@import "font";
+@import "toaster";
+
+body{
+  background-color: $bgColor;
+  font-size: 1rem;
+  @extend .page;
+}
+
+.page{
+  margin-top: 60px!important;
+  color: $textWhite;
+  line-height: 1.2em;
+  font-family: $quickSand;
+  font-size: 14px;
+}
+.nav-tabs a{
+  color: $textWhite;
+}
+
+.nav-tabs a:hover{
+  color: $textWhitehover;
+}
+
+.curiosity_img{
+  width: 100%;
+
+  @media (max-width: 575.99px) {
+    max-height: 240px;
+  }
+  @media (min-width: 576px) and (max-width: 767.99px) {
+    max-height: 240px;
+  }
+
+}
+
+
+
+.nav-link {
+  padding: .2rem .4rem;
+}
+
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 2px solid rgb(255, 255, 255);
+}
+
+
+pre{
+  color:white ;
+}
+
+
+.card-body{
+  color: black}
+
+.carousel-caption{
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);}
+
+
+ngb-datepicker{
+  background-color: white;
+  color: black;
+  margin-left: 9%;
+}
+
+.pickerDate{
+  padding-left: 1%;
+}
+.navbar-brand {
+  font-size: 1rem;
+}
+.row{
+  margin-top: 2%;
+}
+
+app-apod{
+  margin-top: 2%;
+}
+
+.popover-header{
+  color:$bgColor;
+}
+
+.navbar-brand {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+
+.apodImg{
+  width: 100%;
+}
+
+ul{
+  padding-left: 0;
+}
+
+.carousel-caption{
+  background-color: rgba(0, 0, 0, 0.46);
+}
+
+.caption{
+  background-color: rgba(0, 0, 0, 0.46);
+}
+
+.card-search{
+  font-size: 14px!important;
+  min-width: 200px;
+  max-width: 200px;
+  margin-bottom: 5%!important;
+  max-height: 415px;
+  overflow: hidden;
+}
+.card-search:hover{
+  cursor: pointer;
+}
+.img-container{
+  max-height: 100px!important;
+  overflow: hidden;
+}
+
+.body-search{
+max-height: 315px!important;
+}
+.card-title{
+  font-size: 1.1rem;
+}
+
+.card-text{
+
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: block;
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+  z-index: 1999; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.displayOn{
+  display: block;
+}
+
+.displayOff{
+  display: none;
+}
+
+.close{
+  margin-right: 2%;
+  margin-top: 2%;
+  font-size: 25px;
+  background-color: #BD362F!important;
+  padding: 0.6%!important;
+  padding-left: 1%!important;
+  padding-right: 1%!important;
+  border-radius: 100%;
+}
+
+.btn-tag {
+  padding: 0.25rem .5rem;
+  font-size: 0.7rem;
+  line-height: 0.7;
+  border-radius: 1.2rem;
+  margin: 1%;
+}
+
+.desc{
+  overflow: scroll;
+}
+
+
+.detail{
+  width:100%;
+  height: auto;
+}
+
+.form-check-label {
+  margin-right: 2%;
+}

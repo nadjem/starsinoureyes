@@ -1,0 +1,42 @@
+<ngb-tabset class="tabSet">
+  <ngb-tab title="hello Universe APOD">
+    <ng-template ngbTabContent>
+      <br>
+<em>APOD <b>(Astronomy Picture of the Day)</b></em>
+      <app-apod> </app-apod>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>liste photos</b></ng-template>
+    <ng-template ngbTabContent>
+
+      <app-curiosity-photo></app-curiosity-photo>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>liste photos (beta)</b></ng-template>
+    <ng-template ngbTabContent>
+
+      <app-show-photo></app-show-photo>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab >
+    <ng-template ngbTabTitle><b>Seul sur Mars </b>(The Martian)</ng-template>
+    <ng-template ngbTabContent>
+
+      <app-martian></app-martian>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab >
+    <ng-template ngbTabTitle><b>Search photo</b></ng-template>
+    <ng-template ngbTabContent>
+
+      <app-search></app-search>
+
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

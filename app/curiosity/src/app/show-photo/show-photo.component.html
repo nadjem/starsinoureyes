@@ -1,0 +1,28 @@
+<div class="container-fluid mx-auto">
+  <div class="row">
+    <div class="col-md-3 menu-photo">
+      <select class="form-control form-control-sm" (change)="onChangeSelectPhoto($event.target.value)">
+        <option *ngFor="let content of listContent">{{content.description}}</option>
+      </select>
+    </div>
+    <div class="col-md-9">
+      <p> resultat : {{dataResult?.collection?.metadata?.total_hits }}</p>
+     <p>page : {{pageCount}}</p>
+      <br><br>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let data of dataResult?.collection?.items">
+          {{ data?.data[0]?.title}}
+          <img class="img-container" src="{{data?.links[0].href}}" alt="">
+          {{ data?.data[0]?.description}}
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="row">
+    <ngb-pagination [collectionSize]="pageCount" [(page)]="page" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" size="sm" (pageChange)="pageChange(page)"></ngb-pagination>
+  </div>
+
+</div>

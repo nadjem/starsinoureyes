@@ -1,0 +1,38 @@
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h4>{{apodData.title}}</h4>
+      <em>{{apodData.copyright}}</em> <b>{{apodData.date | date}}</b>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <img class="apodImg" src="{{apodData.hdurl}}" alt="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p *ngIf="!isTranslated">{{apodData.explanation}}</p>
+      <p *ngIf="isTranslated">{{translatedExplanation.result?.text }}<br> <small><em>powered by google translate</em></small></p>
+      <br>
+
+      <div class="form-check form-check-inline">
+        <div *ngFor="let entry of entries; let idx = index">
+          <input class="form-check-input" type="radio" name="radiogroup" id="{{entry.description}}" value="{{entry.description}}" [checked]="idx === 0" [value]="entry.id" (change)="onSelectionChange(entry)">
+          <label class="form-check-label" for="{{entry.description}}">
+            {{ entry.description }}
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+

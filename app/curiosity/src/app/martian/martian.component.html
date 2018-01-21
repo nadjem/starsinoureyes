@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="row">
+
+
+
+  </div>
+  <div class="row">
+
+    <div class="col-md-3 pickerDate">
+
+
+      <p>Select earth date</p>
+
+      <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+      <br>
+      <hr>
+      <button type="button" class="btn btn-outline-light btn-sm btn-block" (click)="selectDate(model)">search photos</button>
+
+      <hr/>
+
+     <!-- <button class="btn btn-sm btn-outline-primary" (click)="selectToday()">Select Today</button>
+      <button class="btn btn-sm btn-outline-primary" (click)="dp.navigateTo()">To current month</button>
+      <button class="btn btn-sm btn-outline-primary" (click)="dp.navigateTo({year: 2013, month: 2})">To Feb 2013</button>-->
+
+      <!--<pre>Month: {{ date.month }}.{{ date.year }}</pre>
+      <pre>Model: {{ model | json }}</pre>-->
+
+    </div>
+    <div class="col-md-9">
+<div class="col">
+  <h1 class="text-center">Curiosity daily photo</h1>
+  <div class="row">
+    <div class="col-md-2"><h5>{{selectedDate | date}}  </h5></div><div class="col-md-4 offset-md-6">
+    <!--<p>rover : {{curiosityDatas?.photos[0].rover.name}}</p>-->
+    <p>launched from earth : {{curiosityDatas?.photos[0]?.rover.launch_date | date}}</p>
+    <p>landed on mars : {{curiosityDatas?.photos[0]?.rover.landing_date | date}}</p>
+    <p>total photo : {{curiosityDatas?.photos[0]?.rover.total_photos }}</p>
+    <ng-template #popContent><p>The term sol is used by planetary astronomers to refer to the duration of a solar day on Mars. A mean Martian solar day, or "sol", is 24 hours, 39 minutes, and 35.244 seconds.The last space missions on mars have defined landing as "Sol 1</p>
+    <p>
+      Le terme sol est utilisé par les astronomes planétaires pour se référer à la durée d'un jour solaire sur Mars. Un jour solaire martien moyen, ou "sol", est de 24 heures, 39 minutes et 35.244 secondes.Les dernières missions spatiales sur Mars ont défini l'atterrissage comme "Sol 1
+    </p></ng-template>
+    <p>sol : {{curiosityDatas?.photos[0]?.sol}} <span placement="left" [ngbPopover]="popContent"triggers="mouseenter:mouseleave" popoverTitle="sol ?"><i class="fas fa-info-circle"></i></span></p>
+  </div>
+  </div>
+  <div class="row">
+
+  </div>
+  <hr>
+</div>
+      <div class="row">
+        <!--<div class="col-sm-4" style="margin-bottom: 2%" *ngFor="let rover of curiosityDatas.photos | paginate: { itemsPerPage: 6, currentPage: p,id: 'first' }">
+
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="{{rover.img_src}}" alt="Card image">
+            <div class="card-img-overlay">
+              <h5 class="card-title">Camera :{{rover.camera.name}} ({{rover.camera.full_name}} )</h5>
+              <em> earth date:{{rover.earth_date | date}}</em>
+            </div>
+          </div>
+        </div>-->
+
+
+        <div class="card-columns mx-auto">
+
+          <div class="card" *ngFor="let rover of curiosityDatas.photos | paginate: { itemsPerPage: 6, currentPage: p,id: 'first' }">
+            <img class="card-img-top" src="{{rover.img_src}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Camera :{{rover.camera.name}} ({{rover.camera.full_name}} )</h5>
+              <em> earth date:{{rover.earth_date | date}}</em>
+            </div>
+          </div>
+
+
+        </div>
+        <!--<div *ngFor="let rover of curiosityDatas.photos">
+          <pre>{{rover | json}}</pre>
+        </div>-->
+
+      </div>
+
+      <div class="row">
+
+
+        <div class="col-md-6 offset-md-2" ><pagination-controls (pageChange)="p= $event" id="first"></pagination-controls></div>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
